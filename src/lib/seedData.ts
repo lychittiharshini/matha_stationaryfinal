@@ -1,0 +1,672 @@
+import {
+  StationeryProduct,
+  FancyProduct,
+  SportsProduct,
+  Category,
+  ServiceItem,
+  Offer,
+  SocialMediaAccount,
+  GalleryPhoto,
+  ShopSettings
+} from '../types';
+
+export const initialCategories: Category[] = [
+  { id: 'cat-notebooks', name: 'Notebooks & Registers', nameTelugu: 'నోట్‌బుక్‌లు & రిజిస్టర్లు', type: 'stationery', order: 1 },
+  { id: 'cat-pens', name: 'Pens & Pencils', nameTelugu: 'పెన్నులు & పెన్సిళ్లు', type: 'stationery', order: 2 },
+  { id: 'cat-school', name: 'School Supplies', nameTelugu: 'పాఠశాల సామాగ్రి', type: 'stationery', order: 3 },
+  { id: 'cat-art', name: 'Art & Craft Materials', nameTelugu: 'ఆర్ట్ & క్రాఫ్ట్ మెటీరియల్స్', type: 'stationery', order: 4 },
+  { id: 'cat-office', name: 'Office Stationery', nameTelugu: 'ఆఫీస్ స్టేషనరీ', type: 'stationery', order: 5 },
+  { id: 'cat-educational', name: 'Educational Supplies', nameTelugu: 'విద్యా సామాగ్రి', type: 'stationery', order: 6 },
+  { id: 'cat-books', name: 'Books & Guides', nameTelugu: 'పుస్తకాలు & గైడ్లు', type: 'stationery', order: 7 },
+  { id: 'cat-other', name: 'Other Stationery', nameTelugu: 'ఇతర స్టేషనరీ', type: 'stationery', order: 8 },
+  // Fancy kids categories
+  { id: 'cat-fancy-erasers', name: 'Cartoon Erasers & Sharpeners', nameTelugu: 'కార్టూన్ రబ్బర్లు & షార్పనర్లు', type: 'fancy', order: 9 },
+  { id: 'cat-fancy-boxes', name: 'Cute Pencil Boxes & Pouches', nameTelugu: 'ముద్దొచ్చే పెన్సిల్ బాక్స్‌లు', type: 'fancy', order: 10 },
+  { id: 'cat-fancy-pens', name: 'Novelty Pens & Highlighters', nameTelugu: 'ఫ్యాన్సీ పెన్నులు & హైలైటర్లు', type: 'fancy', order: 11 },
+  { id: 'cat-fancy-diaries', name: 'Mini Diaries & Cute Notepads', nameTelugu: 'మినీ డైరీలు & నోట్‌ప్యాడ్‌లు', type: 'fancy', order: 12 },
+  { id: 'cat-fancy-craft', name: 'Cute Stickers, Tapes & Sets', nameTelugu: 'ఫ్యాన్సీ స్టిక్కర్లు & టేపులు', type: 'fancy', order: 13 },
+  // Sports categories
+  { id: 'cat-sports-cricket', name: 'Cricket Bats & Stumps', nameTelugu: 'క్రికెట్ బ్యాట్లు & స్టంప్స్', type: 'sports', order: 14 },
+  { id: 'cat-sports-balls', name: 'Sports Balls & Shuttles', nameTelugu: 'స్పోర్ట్స్ బంతులు & షటిల్స్', type: 'sports', order: 15 },
+  { id: 'cat-sports-fitness', name: 'Kids Fitness & Games', nameTelugu: 'పిల్లల ఫిట్‌నెస్ & ఆటలు', type: 'sports', order: 16 },
+  // Four Homepage Main Category Cards
+  { id: 'main_stationery', name: 'Stationery Items', nameTelugu: 'స్టేషనరీ వస్తువులు', type: 'stationery', order: 101, isMainCategory: true, imageUrl: '' },
+  { id: 'main_fancy', name: "Kids' Fancy Stationery Items", nameTelugu: 'పిల్లల ఫ్యాన్సీ స్టేషనరీ', type: 'fancy', order: 102, isMainCategory: true, imageUrl: '' },
+  { id: 'main_xerox', name: 'Xerox & Print', nameTelugu: 'జిరాక్స్ & ప్రింట్', type: 'xerox', order: 103, isMainCategory: true, imageUrl: '' },
+  { id: 'main_sports', name: 'Sports Items', nameTelugu: 'స్పోర్ట్స్ ఐటమ్స్', type: 'sports', order: 104, isMainCategory: true, imageUrl: '' },
+];
+
+export const initialStationeryProducts: StationeryProduct[] = [
+  {
+    id: 'stat-1',
+    name: 'Classmate Long Ruled Register (172 Pages)',
+    nameTelugu: 'క్లాస్‌మేట్ లాంగ్ రూల్డ్ రిజిస్టర్ (172 పేజీలు)',
+    categoryId: 'cat-notebooks',
+    categoryName: 'Notebooks & Registers',
+    description: 'Premium elemental chlorine-free high-opacity white paper, durable pin-binding. Ideal for high school, college and accounts.',
+    price: 65,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    brand: 'Classmate',
+    imageUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-2',
+    name: 'Navneet Hardbound Four-Line / Square Notebook (160 Pages)',
+    nameTelugu: 'నవనీత్ ఫోర్-లైన్ / స్క్వేర్ నోట్‌బుక్ (160 పేజీలు)',
+    categoryId: 'cat-notebooks',
+    categoryName: 'Notebooks & Registers',
+    description: 'Perfect for primary students learning handwriting and arithmetic. Strong hardbound cover with smooth ruling.',
+    price: 45,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    brand: 'Navneet',
+    imageUrl: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-3',
+    name: 'Cello Butterflow Classic Blue Ball Pen (Pack of 5)',
+    nameTelugu: 'సెల్లో బటర్‌ఫ్లో క్లాసిక్ బ్లూ బాల్ పెన్ (5 ప్యాక్)',
+    categoryId: 'cat-pens',
+    categoryName: 'Pens & Pencils',
+    description: 'Ultra-low viscosity Lubriflow ink system for feather-light handwriting. Preferred by students during board exams.',
+    price: 50,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    brand: 'Cello',
+    imageUrl: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-4',
+    name: 'Parker Vector Stainless Steel Fountain Pen',
+    nameTelugu: 'పార్కర్ వెక్టర్ స్టెయిన్‌లెస్ స్టీల్ ఫౌంటెన్ పెన్',
+    categoryId: 'cat-pens',
+    categoryName: 'Pens & Pencils',
+    description: 'Classic durable stainless steel body with polished nib. Perfect for teachers, official signatures, and gift giving.',
+    price: undefined,
+    rateOnRequest: true,
+    inStock: true,
+    featured: true,
+    brand: 'Parker',
+    imageUrl: 'https://images.unsplash.com/photo-1585336261026-70e6a172782e?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-5',
+    name: 'Apsara Platinum Extra Dark Pencils (Pack of 10 with Eraser & Sharpener)',
+    nameTelugu: 'అప్సరా ప్లాటినం ఎక్స్‌ట్రా డార్క్ పెన్సిళ్లు (10 ప్యాక్)',
+    categoryId: 'cat-pens',
+    categoryName: 'Pens & Pencils',
+    description: 'Extra dark drawing lead for distinct bold handwriting with minimal pressure. Includes soft eraser and sharpener.',
+    price: 60,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    brand: 'Apsara',
+    imageUrl: 'https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-6',
+    name: 'Camlin Scholar Mathematical Geometry Drawing Instruments Box',
+    nameTelugu: 'కామ్లిన్ స్కాలర్ జామెట్రీ బాక్స్',
+    categoryId: 'cat-school',
+    categoryName: 'School Supplies',
+    description: 'Rust-resistant die-cast compass, divider, 15cm ruler, 45 & 60-degree set squares, 180-degree protractor, pencil & sharpener.',
+    price: 110,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    brand: 'Camlin',
+    imageUrl: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-7',
+    name: 'JK Copier A4 Paper Ream (75 GSM, 500 Sheets)',
+    nameTelugu: 'JK కాపియర్ A4 పేపర్ రీమ్ (75 GSM, 500 షీట్లు)',
+    categoryId: 'cat-office',
+    categoryName: 'Office Stationery',
+    description: 'ColorLok technology for vibrant colors and bolder blacks. High speed jam-free printing and Xerox copying.',
+    price: 340,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    brand: 'JK Paper',
+    imageUrl: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-8',
+    name: 'Faber-Castell Connector Colour Pens (Set of 25)',
+    nameTelugu: 'ఫేబర్-కాస్టెల్ కనెక్టర్ కలర్ పెన్నులు (25 సెట్)',
+    categoryId: 'cat-art',
+    categoryName: 'Art & Craft Materials',
+    description: 'Vibrant non-toxic washable ink pens with connectable clip-caps for building fun craft shapes.',
+    price: 160,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    brand: 'Faber-Castell',
+    imageUrl: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-9',
+    name: 'Camel Artists Acrylic Colour 12 Shades Tube Set',
+    nameTelugu: 'కామెల్ ఆర్టిస్ట్ యాక్రిలిక్ కలర్స్ (12 షేడ్స్)',
+    categoryId: 'cat-art',
+    categoryName: 'Art & Craft Materials',
+    description: 'Rich pigment load, fast-drying, water-resistant film. Ideal for canvas, paper, wood and earthen pots.',
+    price: 240,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    brand: 'Camel',
+    imageUrl: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-10',
+    name: 'Kangaro Heavy Duty Desk Stapler & No.10 Pins Set',
+    nameTelugu: 'కంగారూ డెస్క్ స్టాప్లర్ & పిన్స్ సెట్',
+    categoryId: 'cat-office',
+    categoryName: 'Office Stationery',
+    description: 'All-metal construction with quick-loading mechanism. Staples up to 20 sheets smoothly.',
+    price: 95,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    brand: 'Kangaro',
+    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-11',
+    name: 'Telangana State Board School Textbooks & Guides (Class 1 to 10)',
+    nameTelugu: 'తెలంగాణ స్టేట్ బోర్డ్ పాఠ్యపుస్తకాలు & గైడ్లు (1 నుండి 10వ తరగతి)',
+    categoryId: 'cat-books',
+    categoryName: 'Books & Guides',
+    description: 'Official SCERT syllabus books, workbooks, model papers, grammar practice guides available in English and Telugu mediums.',
+    price: undefined,
+    rateOnRequest: true,
+    inStock: true,
+    featured: true,
+    brand: 'Govt & Educational Publications',
+    imageUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'stat-12',
+    name: 'Casio FX-82MS 2nd Gen Scientific Calculator',
+    nameTelugu: 'కాసియో సైంటిఫిక్ క్యాలిక్యులేటర్',
+    categoryId: 'cat-educational',
+    categoryName: 'Educational Supplies',
+    description: '240 functions, 2-line display. Indispensable for polytechnic, engineering and intermediate students.',
+    price: 580,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    brand: 'Casio',
+    imageUrl: 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  }
+];
+
+export const initialFancyProducts: FancyProduct[] = [
+  {
+    id: 'fancy-1',
+    name: 'Cute 3D Cartoon Dinosaur Erasers Set (Pack of 4)',
+    nameTelugu: 'ముద్దొచ్చే 3D డైనోసార్ రబ్బర్ల సెట్ (4 ప్యాక్)',
+    subCategory: 'Cartoon Erasers',
+    description: 'Adorable colorful detachable dinosaur puzzle erasers. Non-toxic, dust-free erasing fun for school kids.',
+    price: 45,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    ageGroup: 'Kids 3-12 yrs',
+    imageUrl: 'https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-2',
+    name: 'Kawaii Space Astronaut Manual Pencil Sharpener with Waste Tray',
+    nameTelugu: 'కవాయి ఆస్ట్రోనాట్ పెన్సిల్ షార్పనర్',
+    subCategory: 'Fancy Sharpeners',
+    description: 'Heavy duty rotary desk sharpener designed like a cute space astronaut. Transparent shavings container, non-slip base.',
+    price: 130,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    ageGroup: 'Kids 4-14 yrs',
+    imageUrl: 'https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-3',
+    name: 'Stackable Rainbow Rocket Pencils (Pack of 3)',
+    nameTelugu: 'రెయిన్‌బో రాకెట్ స్టాకబుల్ పెన్సిల్స్',
+    subCategory: 'Cartoon Pencils',
+    description: 'No sharpening required! Replaceable pop-a-point rainbow pencil capsules with cute rocket caps that children love.',
+    price: 35,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    ageGroup: 'Kids 4-10 yrs',
+    imageUrl: 'https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-4',
+    name: '6-in-1 Cartoon Animal Retractable Multicolor Gel Pen',
+    nameTelugu: '6-ఇన్-1 కలర్ కార్టూన్ జెల్ పెన్',
+    subCategory: 'Fancy Pens',
+    description: 'Features 6 bright vibrant colors in one body with a cute silicone animal mascot head on top. Smooth glide ink.',
+    price: 40,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    ageGroup: 'Kids 5-15 yrs',
+    imageUrl: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-5',
+    name: 'Pastel Macaron Double-Ended Cute Highlighters (Pack of 6)',
+    nameTelugu: 'పాస్టెల్ మ్యాకరాన్ డబుల్ సైడ్ హైలైటర్లు (6 ప్యాక్)',
+    subCategory: 'Colourful Highlighters',
+    description: 'Soft eye-friendly pastel hues (mint, lavender, peach, lemon, sky blue, rose) with chisel & fine bullet tips.',
+    price: 95,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    ageGroup: 'Kids & Students',
+    imageUrl: 'https://images.unsplash.com/photo-1569683795645-b62e50fbf103?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-6',
+    name: 'Plush Velvet Secret Lock Diary with 2 Keys',
+    nameTelugu: 'ప్లష్ వెల్వెట్ సీక్రెట్ లాక్ డైరీ (కీలతో)',
+    subCategory: 'Mini Diaries',
+    description: 'Soft cuddly cover with embroidered cartoon face, lined illustrated pages, and a real metallic lock with double keys.',
+    price: 150,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    ageGroup: 'Kids 6-14 yrs',
+    imageUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-7',
+    name: 'Multi-Function Magnetic Double-Decker Pencil Box with Built-In Sharpener',
+    nameTelugu: 'మల్టీ-ఫంక్షన్ మాగ్నెటిక్ డబుల్-డెక్కర్ పెన్సిల్ బాక్స్',
+    subCategory: 'Cute Pencil Boxes',
+    description: 'Pop-up push buttons for built-in dual pencil sharpener, eraser compartment, scissor slot, and timetable card.',
+    price: 180,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    ageGroup: 'Kids 4-12 yrs',
+    imageUrl: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-8',
+    name: 'Flexible Animal Bendable 30cm Cartoon Ruler',
+    nameTelugu: 'ఫ్లెక్సిబుల్ బెండబుల్ 30సెం.మీ కార్టూన్ స్కేల్',
+    subCategory: 'Cartoon Rulers',
+    description: 'Shatter-proof soft plastic ruler that bends without breaking. Fun cartoon animal markings in inches and cm.',
+    price: 25,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    ageGroup: 'Kids 3-10 yrs',
+    imageUrl: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-9',
+    name: 'Holographic & Glitter Washi Decorative Tapes (Set of 8 Rolls)',
+    nameTelugu: 'హోలోగ్రాఫిక్ గ్లిట్టర్ వాషి టేపుల సెట్ (8 రోల్స్)',
+    subCategory: 'Decorative Tapes',
+    description: 'Shimmering decorative adhesive tapes for school projects, art charts, scrapbooking and book border decorating.',
+    price: 70,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    ageGroup: 'Kids & Teens',
+    imageUrl: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-10',
+    name: 'Cute Cartoon Animal Magnetic Bookmarks (Pack of 6)',
+    nameTelugu: 'ముద్దొచ్చే యానిమల్ మాగ్నెటిక్ బుక్‌మార్క్స్ (6 ప్యాక్)',
+    subCategory: 'Cute Bookmarks',
+    description: 'Clip-over magnetic book markers featuring pandas, cats, bunnies and corgis. Keeps page places safely without paper damage.',
+    price: 45,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    ageGroup: 'Kids & Students',
+    imageUrl: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-11',
+    name: 'Silky Twistable Non-Toxic Triangular Crayons (12 Shades)',
+    nameTelugu: 'సిల్కీ ట్విస్టబుల్ నాన్-టాక్సిక్ క్రేయాన్స్ (12 షేడ్స్)',
+    subCategory: 'Colourful Crayons',
+    description: 'No peeling, no breaking. Simple twist bottom mechanism keeps little hands clean. Vibrant blendable coloring.',
+    price: 110,
+    rateOnRequest: false,
+    inStock: true,
+    featured: false,
+    ageGroup: 'Kids 3-8 yrs',
+    imageUrl: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'fancy-12',
+    name: 'Magical Unicorn Complete School Study Stationery Gift Kit',
+    nameTelugu: 'మ్యాజికల్ యూనికార్న్ పూర్తి స్టేషనరీ గిఫ్ట్ కిట్',
+    subCategory: 'Mini Stationery Gift Sets',
+    description: 'Complete gift pack containing a metal pencil box, 2 cartoon pencils, eraser, sharpener, 15cm ruler, and mini notebook.',
+    price: 160,
+    rateOnRequest: false,
+    inStock: true,
+    featured: true,
+    ageGroup: 'Kids 4-12 yrs',
+    imageUrl: 'https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  }
+];
+
+export const initialSportsProducts: SportsProduct[] = [
+  {
+    id: 'sports-1',
+    name: 'Junior Kashmir Willow Cricket Bat (Size 3 & 4)',
+    nameTelugu: 'చిన్న పిల్లల చెక్క క్రికెట్ బ్యాట్ (సైజ్ 3 & 4)',
+    categoryId: 'cat-sports-cricket',
+    categoryName: 'Cricket Bats & Stumps',
+    description: 'Lightweight natural wood cricket bat with rubber grip handle. Ideal for gully cricket and school sports for ages 6-12.',
+    price: 320,
+    rateOnRequest: false,
+    inStock: true,
+    brand: 'DSC / SG Junior',
+    imageUrl: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'sports-2',
+    name: 'Heavy Tennis Cricket Ball (Red/Green Pack of 2)',
+    nameTelugu: 'హెవీ టెన్నిస్ క్రికెట్ బాల్ (2 ప్యాక్)',
+    categoryId: 'cat-sports-balls',
+    categoryName: 'Sports Balls & Shuttles',
+    description: 'Durable rubber core with wool felt covering for great bounce and durability on rough streets and grounds.',
+    price: 120,
+    rateOnRequest: false,
+    inStock: true,
+    brand: 'Cosco / Vicky',
+    imageUrl: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'sports-3',
+    name: 'Kids Plastic Cricket Stumps with Stand Base (Set of 3 with Bails)',
+    nameTelugu: 'ప్లాస్టిక్ క్రికెట్ వికెట్లు & బేస్ సెట్',
+    categoryId: 'cat-sports-cricket',
+    categoryName: 'Cricket Bats & Stumps',
+    description: 'All-weather durable plastic wicket set with sturdy water/sand fillable base and 2 bails. Portable for outdoor play.',
+    price: 180,
+    rateOnRequest: false,
+    inStock: true,
+    brand: 'PlayMate',
+    imageUrl: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'sports-4',
+    name: 'Badminton Pair Rackets with Nylon Shuttlecock Tube (3 Shuttles)',
+    nameTelugu: 'బ్యాడ్మింటన్ రాకెట్లు & షటిల్ కాక్ సెట్',
+    categoryId: 'cat-sports-balls',
+    categoryName: 'Sports Balls & Shuttles',
+    description: 'Alloy frame lightweight twin badminton rackets with protective head cover and 3 durable nylon shuttlecocks.',
+    price: 290,
+    rateOnRequest: false,
+    inStock: true,
+    brand: 'Yonex / Silver',
+    imageUrl: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'sports-5',
+    name: 'Speed Jump Skipping Rope with Anti-Slip Handles',
+    nameTelugu: 'స్పీడ్ స్కిప్పింగ్ రోప్ (హ్యాండిల్స్‌తో)',
+    categoryId: 'cat-sports-fitness',
+    categoryName: 'Kids Fitness & Games',
+    description: 'Smooth rotation tangle-free PVC skipping rope with foam grip handles. Great for school sports day practice and fitness.',
+    price: 75,
+    rateOnRequest: false,
+    inStock: true,
+    brand: 'FitnessPro',
+    imageUrl: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'sports-6',
+    name: 'Synthetic Rubber Football (Size 3 for Kids)',
+    nameTelugu: 'రబ్బర్ ఫుట్‌బాల్ (సైజ్ 3 పిల్లల కోసం)',
+    categoryId: 'cat-sports-balls',
+    categoryName: 'Sports Balls & Shuttles',
+    description: 'High durability stitched water-resistant rubber football. Perfect for school ground matches.',
+    price: undefined,
+    rateOnRequest: true,
+    inStock: true,
+    brand: 'Cosco',
+    imageUrl: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80',
+    createdAt: new Date().toISOString()
+  }
+];
+
+export const initialServices: ServiceItem[] = [
+  {
+    id: 'srv-xerox-bw-single',
+    name: 'Black & White Single-Side Xerox',
+    nameTelugu: 'బ్లాక్ & వైట్ సింగిల్-సైడ్ జిరాక్స్',
+    category: 'xerox',
+    description: 'High-speed clear photocopy on 75 GSM bright paper. Instant processing for school/college notes & govt documents.',
+    priceStartingFrom: 2,
+    rateUnit: 'per page',
+    rateOnRequest: false,
+    available: true,
+    order: 1
+  },
+  {
+    id: 'srv-xerox-bw-double',
+    name: 'Black & White Double-Side Xerox',
+    nameTelugu: 'బ్లాక్ & వైట్ డబుల్-సైడ్ జిరాక్స్',
+    category: 'xerox',
+    description: 'Cost-saving two-sided photocopy. Best for large study materials, question banks, project printouts and books.',
+    priceStartingFrom: 3,
+    rateUnit: 'per sheet (both sides)',
+    rateOnRequest: false,
+    available: true,
+    order: 2
+  },
+  {
+    id: 'srv-print-color-single',
+    name: 'Colour Single-Side Printing',
+    nameTelugu: 'కలర్ సింగిల్-సైడ్ ప్రింటింగ్',
+    category: 'printing',
+    description: 'Laser-sharp vibrant color prints for school assignments, charts, photos, hall tickets, and resume prints.',
+    priceStartingFrom: 10,
+    rateUnit: 'per page',
+    rateOnRequest: false,
+    available: true,
+    order: 3
+  },
+  {
+    id: 'srv-print-color-double',
+    name: 'Colour Double-Side Printing',
+    nameTelugu: 'కలర్ డబుల్-సైడ్ ప్రింటింగ్',
+    category: 'printing',
+    description: 'High fidelity color printing on both sides. Ideal for brochures, school project submissions, and presentations.',
+    priceStartingFrom: 18,
+    rateUnit: 'per sheet (both sides)',
+    rateOnRequest: false,
+    available: true,
+    order: 4
+  },
+  {
+    id: 'srv-lamination',
+    name: 'Hot Thermal Lamination',
+    nameTelugu: 'హై క్వాలిటీ లామినేషన్ సర్వీస్',
+    category: 'lamination',
+    description: 'Water-proof, tear-proof crystal clear gloss protection for certificates, marks memos, Aadhar cards, ID cards and photos.',
+    priceStartingFrom: 20,
+    rateUnit: 'per document (A4)',
+    rateOnRequest: false,
+    available: true,
+    order: 5
+  }
+];
+
+export const initialOffers: Offer[] = [
+  {
+    id: 'off-1',
+    title: 'School Season Super Combo Kit',
+    titleTelugu: 'స్కూల్ సీజన్ సూపర్ కాంబో కిట్ ఆఫర్',
+    description: 'Buy complete set of 6 Long Registers + Cello 5-Pen Pack + Geometry Box and get flat 15% discount instantly!',
+    posterUrl: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80',
+    discountBadge: 'FLAT 15% OFF',
+    startDate: '2026-06-01',
+    expiryDate: '2026-12-31',
+    isActive: true,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'off-2',
+    title: 'Kids Fancy Stationery Fun Deal',
+    titleTelugu: 'పిల్లల ఫ్యాన్సీ స్టేషనరీ ఫన్ ఆఫర్',
+    description: 'Buy any 2 Cartoon Sharpeners or Novelty Pens and get 1 Cartoon Eraser completely FREE!',
+    posterUrl: 'https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?auto=format&fit=crop&w=700&q=80',
+    discountBadge: 'BUY 2 GET 1 FREE',
+    startDate: '2026-01-01',
+    expiryDate: '2026-12-31',
+    isActive: true,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'off-3',
+    title: 'Student Project & Exam Xerox Pass',
+    titleTelugu: 'స్టూడెంట్ ప్రాజెక్ట్ & ఎగ్జామ్ జిరాక్స్ పాస్',
+    description: 'Bulk Xerox & print discount: ₹1.50 per page for study materials exceeding 50 pages.',
+    posterUrl: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=700&q=80',
+    discountBadge: 'BULK SAVINGS',
+    startDate: '2026-01-01',
+    expiryDate: '2026-12-31',
+    isActive: true,
+    createdAt: new Date().toISOString()
+  }
+];
+
+export const initialSocialMedia: SocialMediaAccount[] = [
+  {
+    id: 'soc-whatsapp',
+    platform: 'WhatsApp',
+    accountName: '+91 98490 12345 (Direct Business Enquiry)',
+    profileUrl: 'https://wa.me/919849012345?text=Hello%20Sree%20Durga%20Mata%20Stationery,%20I%20have%20an%20enquiry',
+    iconKey: 'MessageSquare',
+    order: 1,
+    isActive: true
+  },
+  {
+    id: 'soc-instagram',
+    platform: 'Instagram',
+    accountName: '@sreedurgamata_stationery',
+    profileUrl: 'https://instagram.com',
+    iconKey: 'Instagram',
+    order: 2,
+    isActive: true
+  },
+  {
+    id: 'soc-facebook',
+    platform: 'Facebook',
+    accountName: 'Sree Durga Mata Stationery & Book Stall Hyderabad',
+    profileUrl: 'https://facebook.com',
+    iconKey: 'Facebook',
+    order: 3,
+    isActive: true
+  },
+  {
+    id: 'soc-youtube',
+    platform: 'YouTube',
+    accountName: 'Durga Mata Stationery Channel',
+    profileUrl: 'https://youtube.com',
+    iconKey: 'Youtube',
+    order: 4,
+    isActive: true
+  }
+];
+
+export const initialGallery: GalleryPhoto[] = [
+  {
+    id: 'gal-1',
+    title: 'Shop Front & Book Stall Display',
+    description: 'Sree Durga Mata Stationery entrance on Ilapur Road, Durgamata Colony',
+    category: 'Shop Interior',
+    imageUrl: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=700&q=80',
+    isPublic: true,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'gal-2',
+    title: "Kids' Fancy Stationery Corner",
+    description: 'Colorful shelves of cartoon erasers, astronaut sharpeners, diaries and novelty items',
+    category: 'Kids Fancy',
+    imageUrl: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=700&q=80',
+    isPublic: true,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'gal-3',
+    title: 'Xerox & High-Speed Printing Machine Desk',
+    description: 'Digital Xerox machines for instant B&W, color printing, and thermal lamination',
+    category: 'Services',
+    imageUrl: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=700&q=80',
+    isPublic: true,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'gal-4',
+    title: 'Dussehra & Diwali Festival Shop Decorations',
+    description: 'Grand festive floral decorations and deepam lighting celebrating Durga Mata blessings at our shop',
+    category: 'Festival',
+    imageUrl: 'https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?auto=format&fit=crop&w=700&q=80',
+    isPublic: true,
+    createdAt: new Date().toISOString()
+  }
+];
+
+export const initialShopSettings: ShopSettings = {
+  id: 'main',
+  shopName: 'SREE DURGA MATA',
+  shopSubtitle: 'Book Stall & Fancy Items',
+  address: 'H. No. 69, Ilapur Rd, Durgamata Colony, Tanda, Hyderabad, Telangana 502032, India.',
+  email: 'sreedurgamathabookstall@gmail.com',
+  phone: '+91 98490 12345',
+  whatsapp: '+91 98490 12345',
+  openingHours: 'Monday – Sunday: 7:30 AM – 9:30 PM (Open all 7 days)',
+  mapsUrl: 'https://maps.google.com/?q=H.+No.+69,+Ilapur+Rd,+Durgamata+Colony,+Hyderabad,+Telangana+502032',
+  noticeEnglish: 'Welcome to Sree Durga Mata Stationery! Special school reopen discount packages and Xerox services available.',
+  noticeTelugu: 'శ్రీ దుర్గా మాత స్టేషనరీకి స్వాగతం! పాఠశాల పుస్తకాలు, స్టేషనరీ మరియు జిరాక్స్ సేవలు అందుబాటులో ఉన్నాయి.'
+};

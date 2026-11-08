@@ -1,0 +1,106 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'lychittiharshini2008@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    // Public catalog collections - Anyone can view, only admin can manage
+    match /stationery_products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /fancy_products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /sports_products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /services/{serviceId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /offers/{offerId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /social_media/{socialId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /gallery/{galleryId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /shop_settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Orders: Anyone (guest customer) can create an order with mandatory name & phone
+    // Only Admin can list, update status, or delete orders
+    match /orders/{orderId} {
+      allow create: if isValidId(orderId) &&
+        request.resource.data.customerName is string &&
+        request.resource.data.customerName.size() >= 2 &&
+        request.resource.data.customerName.size() <= 120 &&
+        request.resource.data.mobileNumber is string &&
+        request.resource.data.mobileNumber.size() >= 7 &&
+        request.resource.data.mobileNumber.size() <= 20;
+      allow read: if isAdmin() || (resource != null && resource.data.mobileNumber is string);
+      allow update, delete: if isAdmin();
+    }
+
+    // Customers: Customers can register/update consent; Admin can view all
+    match /customers/{customerId} {
+      allow create, update: if isValidId(customerId) &&
+        request.resource.data.name is string &&
+        request.resource.data.phone is string &&
+        request.resource.data.phone.size() >= 7;
+      allow read, delete: if isAdmin();
+    }
+
+    // Notifications history: Admin only
+    match /notifications/{notificationId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Admins registry: Read by signed in user, manage by admin or bootstrap owner
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin() || (isSignedIn() && request.auth.uid == adminId && request.auth.token.email == 'lychittiharshini2008@gmail.com');
+    }
+  }
+}

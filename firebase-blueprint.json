@@ -1,0 +1,294 @@
+{
+  "entities": {
+    "StationeryProduct": {
+      "title": "Stationery Product",
+      "description": "Stationery items including pens, notebooks, office supplies, school supplies, art craft",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 150 },
+        "nameTelugu": { "type": "string", "maxLength": 150 },
+        "categoryId": { "type": "string", "maxLength": 80 },
+        "categoryName": { "type": "string", "maxLength": 80 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "price": { "type": "number" },
+        "rateOnRequest": { "type": "boolean" },
+        "inStock": { "type": "boolean" },
+        "imageUrl": { "type": "string", "maxLength": 500 },
+        "storagePath": { "type": "string", "maxLength": 500 },
+        "featured": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "categoryId", "inStock"]
+    },
+    "FancyProduct": {
+      "title": "Kids Fancy Stationery Item",
+      "description": "Cute and novelty stationery items for kids (cartoon erasers, fancy sharpeners, pens, diaries, pencil boxes)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 150 },
+        "nameTelugu": { "type": "string", "maxLength": 150 },
+        "subCategory": { "type": "string", "maxLength": 80 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "price": { "type": "number" },
+        "rateOnRequest": { "type": "boolean" },
+        "inStock": { "type": "boolean" },
+        "imageUrl": { "type": "string", "maxLength": 500 },
+        "storagePath": { "type": "string", "maxLength": 500 },
+        "featured": { "type": "boolean" },
+        "ageGroup": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "inStock"]
+    },
+    "SportsProduct": {
+      "title": "Sports Item",
+      "description": "Sports items including small cricket bats, balls, and equipment",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 150 },
+        "nameTelugu": { "type": "string", "maxLength": 150 },
+        "subCategory": { "type": "string", "maxLength": 80 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "price": { "type": "number" },
+        "rateOnRequest": { "type": "boolean" },
+        "inStock": { "type": "boolean" },
+        "imageUrl": { "type": "string", "maxLength": 500 },
+        "storagePath": { "type": "string", "maxLength": 500 },
+        "featured": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "inStock"]
+    },
+    "Category": {
+      "title": "Product Category",
+      "description": "Categories for categorizing stationery, kids fancy, and sports items, plus homepage category cards",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 80 },
+        "name": { "type": "string", "maxLength": 80 },
+        "nameTelugu": { "type": "string", "maxLength": 80 },
+        "description": { "type": "string", "maxLength": 500 },
+        "type": { "type": "string", "enum": ["stationery", "fancy", "sports", "xerox"] },
+        "order": { "type": "number" },
+        "imageUrl": { "type": "string", "maxLength": 1000 },
+        "storagePath": { "type": "string", "maxLength": 500 },
+        "isMainCategory": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "Service": {
+      "title": "Shop Service",
+      "description": "Services offered by shop like Xerox, Color Printing, and Lamination",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 80 },
+        "name": { "type": "string", "maxLength": 120 },
+        "nameTelugu": { "type": "string", "maxLength": 120 },
+        "category": { "type": "string", "maxLength": 50 },
+        "description": { "type": "string", "maxLength": 500 },
+        "priceStartingFrom": { "type": "number" },
+        "rateUnit": { "type": "string", "maxLength": 50 },
+        "rateOnRequest": { "type": "boolean" },
+        "available": { "type": "boolean" },
+        "imageUrl": { "type": "string", "maxLength": 500 },
+        "storagePath": { "type": "string", "maxLength": 500 },
+        "options": { "type": "string", "maxLength": 1000 },
+        "order": { "type": "number" }
+      },
+      "required": ["id", "name", "category", "available"]
+    },
+    "Order": {
+      "title": "Customer Order Request",
+      "description": "Order or service request submitted with customer name, phone number, and selected items",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "customerName": { "type": "string", "maxLength": 120 },
+        "mobileNumber": { "type": "string", "maxLength": 20 },
+        "items": { "type": "string", "maxLength": 5000 },
+        "totalEstimate": { "type": "number" },
+        "customerMessage": { "type": "string", "maxLength": 1000 },
+        "marketingConsent": { "type": "boolean" },
+        "status": {
+          "type": "string",
+          "enum": ["New", "Confirmed", "Processing", "Ready for pickup", "Completed", "Cancelled"]
+        },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "customerName", "mobileNumber", "status"]
+    },
+    "Offer": {
+      "title": "Shop Offer Promotion",
+      "description": "Special discounts and deals",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 150 },
+        "titleTelugu": { "type": "string", "maxLength": 150 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "posterUrl": { "type": "string", "maxLength": 500 },
+        "discountBadge": { "type": "string", "maxLength": 60 },
+        "startDate": { "type": "string", "maxLength": 30 },
+        "expiryDate": { "type": "string", "maxLength": 30 },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "title", "description", "isActive"]
+    },
+    "Customer": {
+      "title": "Customer Record",
+      "description": "Directory of customers who placed requests or subscribed",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 80 },
+        "name": { "type": "string", "maxLength": 120 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "marketingConsent": { "type": "boolean" },
+        "subscribedToWebNotifications": { "type": "boolean" },
+        "fcmToken": { "type": "string", "maxLength": 300 },
+        "totalOrders": { "type": "number" },
+        "lastOrderAt": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "phone"]
+    },
+    "SocialMedia": {
+      "title": "Social Media Account",
+      "description": "Configurable social media accounts for footer and contact section",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 80 },
+        "platform": { "type": "string", "maxLength": 50 },
+        "accountName": { "type": "string", "maxLength": 100 },
+        "profileUrl": { "type": "string", "maxLength": 500 },
+        "iconKey": { "type": "string", "maxLength": 50 },
+        "order": { "type": "number" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["id", "platform", "accountName", "profileUrl", "isActive"]
+    },
+    "GalleryItem": {
+      "title": "Gallery Photo",
+      "description": "Shop interior, exterior, festival decoration, or display photos",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 80 },
+        "title": { "type": "string", "maxLength": 120 },
+        "description": { "type": "string", "maxLength": 500 },
+        "category": { "type": "string", "maxLength": 50 },
+        "imageUrl": { "type": "string", "maxLength": 500 },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "title", "imageUrl", "isPublic"]
+    },
+    "Notification": {
+      "title": "Notification Log",
+      "description": "History of broadcast push notifications sent to customers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 150 },
+        "body": { "type": "string", "maxLength": 1000 },
+        "offerId": { "type": "string", "maxLength": 80 },
+        "sentAt": { "type": "string" },
+        "sentCount": { "type": "number" },
+        "status": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "title", "body", "sentAt"]
+    },
+    "ShopSettings": {
+      "title": "Shop Configuration",
+      "description": "Global shop settings like address, contact phone, whatsapp, opening hours, telugu notice",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 80 },
+        "shopName": { "type": "string", "maxLength": 150 },
+        "shopSubtitle": { "type": "string", "maxLength": 150 },
+        "address": { "type": "string", "maxLength": 300 },
+        "email": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 25 },
+        "whatsapp": { "type": "string", "maxLength": 25 },
+        "openingHours": { "type": "string", "maxLength": 150 },
+        "mapsUrl": { "type": "string", "maxLength": 500 },
+        "noticeEnglish": { "type": "string", "maxLength": 300 },
+        "noticeTelugu": { "type": "string", "maxLength": 300 }
+      },
+      "required": ["id", "shopName", "phone", "whatsapp"]
+    },
+    "AdminUser": {
+      "title": "Admin User",
+      "description": "Verified administrator UID record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 120 },
+        "role": { "type": "string", "maxLength": 30 },
+        "addedAt": { "type": "string" }
+      },
+      "required": ["id", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/stationery_products/{productId}": {
+      "schema": "#/entities/StationeryProduct",
+      "description": "Catalog of stationery items"
+    },
+    "/fancy_products/{productId}": {
+      "schema": "#/entities/FancyProduct",
+      "description": "Catalog of kids fancy stationery items"
+    },
+    "/sports_products/{productId}": {
+      "schema": "#/entities/SportsProduct",
+      "description": "Catalog of sports items"
+    },
+    "/categories/{categoryId}": {
+      "schema": "#/entities/Category",
+      "description": "Stationery and fancy item categories"
+    },
+    "/services/{serviceId}": {
+      "schema": "#/entities/Service",
+      "description": "Shop Xerox, printing, lamination and tuition services"
+    },
+    "/orders/{orderId}": {
+      "schema": "#/entities/Order",
+      "description": "Customer purchase and service requests with mandatory name and phone"
+    },
+    "/offers/{offerId}": {
+      "schema": "#/entities/Offer",
+      "description": "Promotional offers and deals"
+    },
+    "/customers/{customerId}": {
+      "schema": "#/entities/Customer",
+      "description": "Customer contact list and marketing preferences"
+    },
+    "/social_media/{socialId}": {
+      "schema": "#/entities/SocialMedia",
+      "description": "Social media links managed by admin"
+    },
+    "/gallery/{galleryId}": {
+      "schema": "#/entities/GalleryItem",
+      "description": "Gallery photos of shop, displays, and festival decoration"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "#/entities/Notification",
+      "description": "History of promotional notifications sent"
+    },
+    "/shop_settings/{settingId}": {
+      "schema": "#/entities/ShopSettings",
+      "description": "Global shop metadata, contact details and hours"
+    },
+    "/admins/{adminId}": {
+      "schema": "#/entities/AdminUser",
+      "description": "Whitelisted administrator accounts"
+    }
+  }
+}

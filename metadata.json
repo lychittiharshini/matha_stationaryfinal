@@ -1,0 +1,6 @@
+{
+  "name": "Sree Durga Mata Stationery",
+  "description": "Official website for Sree Durga Mata - Book Stall & Fancy Items. Stationery, Kids Fancy Items, Xerox & Print, and Sports in Hyderabad.",
+  "requestFramePermissions": ["notifications"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
