@@ -243,7 +243,7 @@ export const CartModal: React.FC = () => {
               {/* Direct WhatsApp Confirmation Button */}
               <div className="pt-2 flex flex-col gap-2">
                 <a
-                  href={`https://wa.me/919849012345?text=${generateWhatsAppMessage(submittedOrder)}`}
+                  href={`https://wa.me/918341037373?text=${generateWhatsAppMessage(submittedOrder)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
