@@ -2911,162 +2911,103 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
           )}
 
           {/* TAB: SETTINGS */}
-         
-{activeTab === 'settings' && (
-  <div className="max-w-2xl bg-white p-6 rounded-3xl border border-[#D8C7AA] shadow-sm space-y-4">
-    <h3 className="font-brand-title font-bold text-lg text-[#1F3B2E]">
-      Store Information & Contact Details
-    </h3>
+          {activeTab === 'settings' && (
+            <div className="max-w-2xl bg-white p-6 rounded-3xl border border-[#D8C7AA] shadow-sm space-y-4">
+              <h3 className="font-brand-title font-bold text-lg text-[#1F3B2E]">
+                Store Information & Contact Details
+              </h3>
 
-    <form
-      onSubmit={async (e) => {
-        e.preventDefault();
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  await setDoc(doc(db, 'shop_settings', 'main'), shopSettings, { merge: true });
+                  alert('Store details saved to Firebase!');
+                  if (onRefreshData) onRefreshData();
+                }}
+                className="space-y-3 text-xs"
+              >
+                <div>
+                  <label className="font-bold block mb-1">Shop Name:</label>
+                  <input
+                    type="text"
+                    value={shopSettings.shopName}
+                    onChange={(e) => (shopSettings.shopName = e.target.value)}
+                    className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
+                  />
+                </div>
 
-        try {
-          setSavingSettings(true);
+                <div>
+                  <label className="font-bold block mb-1">Subtitle:</label>
+                  <input
+                    type="text"
+                    value={shopSettings.shopSubtitle}
+                    onChange={(e) => (shopSettings.shopSubtitle = e.target.value)}
+                    className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
+                  />
+                </div>
 
-          await setDoc(
-            doc(db, 'shop_settings', 'main'),
-            settingsForm,
-            { merge: true }
-          );
+                <div>
+                  <label className="font-bold block mb-1">Official Address:</label>
+                  <textarea
+                    rows={2}
+                    value={shopSettings.address}
+                    onChange={(e) => (shopSettings.address = e.target.value)}
+                    className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
+                  />
+                </div>
 
-          alert('Store details saved to Firebase!');
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="font-bold block mb-1">Phone Number:</label>
+                    <input
+                      type="text"
+                      value={shopSettings.phone}
+                      onChange={(e) => (shopSettings.phone = e.target.value)}
+                      className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
+                    />
+                  </div>
+                  <div>
+                    <label className="font-bold block mb-1">WhatsApp Number:</label>
+                    <input
+                      type="text"
+                      value={shopSettings.whatsapp}
+                      onChange={(e) => (shopSettings.whatsapp = e.target.value)}
+                      className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
+                    />
+                  </div>
+                </div>
 
-          if (onRefreshData) {
-            await onRefreshData();
-          }
-        } catch (error) {
-          console.error('Settings save error:', error);
-          alert('Failed to save store details. Please try again.');
-        } finally {
-          setSavingSettings(false);
-        }
-      }}
-      className="space-y-3 text-xs"
-    >
-      <div>
-        <label className="font-bold block mb-1">Shop Name:</label>
-        <input
-          type="text"
-          value={settingsForm.shopName || ''}
-          onChange={(e) =>
-            setSettingsForm(prev => ({
-              ...prev,
-              shopName: e.target.value
-            }))
-          }
-          className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
-        />
-      </div>
+                <div>
+                  <label className="font-bold block mb-1">Gmail Address:</label>
+                  <input
+                    type="email"
+                    value={shopSettings.email}
+                    onChange={(e) => (shopSettings.email = e.target.value)}
+                    className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
+                  />
+                </div>
 
-      <div>
-        <label className="font-bold block mb-1">Subtitle:</label>
-        <input
-          type="text"
-          value={settingsForm.shopSubtitle || ''}
-          onChange={(e) =>
-            setSettingsForm(prev => ({
-              ...prev,
-              shopSubtitle: e.target.value
-            }))
-          }
-          className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
-        />
-      </div>
+                <div>
+                  <label className="font-bold block mb-1">Opening Hours:</label>
+                  <input
+                    type="text"
+                    value={shopSettings.openingHours}
+                    onChange={(e) => (shopSettings.openingHours = e.target.value)}
+                    className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
+                  />
+                </div>
 
-      <div>
-        <label className="font-bold block mb-1">Official Address:</label>
-        <textarea
-          rows={2}
-          value={settingsForm.address || ''}
-          onChange={(e) =>
-            setSettingsForm(prev => ({
-              ...prev,
-              address: e.target.value
-            }))
-          }
-          className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
-        />
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div>
-          <label className="font-bold block mb-1">Phone Number:</label>
-          <input
-            type="tel"
-            value={settingsForm.phone || ''}
-            onChange={(e) =>
-              setSettingsForm(prev => ({
-                ...prev,
-                phone: e.target.value
-              }))
-            }
-            className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
-            placeholder="Enter phone number"
-          />
-        </div>
-
-        <div>
-          <label className="font-bold block mb-1">WhatsApp Number:</label>
-          <input
-            type="tel"
-            value={settingsForm.whatsapp || ''}
-            onChange={(e) =>
-              setSettingsForm(prev => ({
-                ...prev,
-                whatsapp: e.target.value
-              }))
-            }
-            className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
-            placeholder="Enter WhatsApp number"
-          />
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-[#1F3B2E] text-[#E8DCC6] hover:bg-[#2C5241] font-bold rounded-xl cursor-pointer mt-4"
+                >
+                  Save to Firebase
+                </button>
+              </form>
+            </div>
+          )}
         </div>
       </div>
-
-      <div>
-        <label className="font-bold block mb-1">Gmail Address:</label>
-        <input
-          type="email"
-          value={settingsForm.email || ''}
-          onChange={(e) =>
-            setSettingsForm(prev => ({
-              ...prev,
-              email: e.target.value
-            }))
-          }
-          className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
-          placeholder="Enter Gmail address"
-        />
-      </div>
-
-      <div>
-        <label className="font-bold block mb-1">Opening Hours:</label>
-        <input
-          type="text"
-          value={settingsForm.openingHours || ''}
-          onChange={(e) =>
-            setSettingsForm(prev => ({
-              ...prev,
-              openingHours: e.target.value
-            }))
-          }
-          className="w-full p-2.5 rounded-xl border border-[#D8C7AA]"
-        />
-      </div>
-
-      <button
-        type="submit"
-        disabled={savingSettings}
-        className="w-full py-3 bg-[#1F3B2E] text-[#E8DCC6] hover:bg-[#2C5241] font-bold rounded-xl cursor-pointer mt-4 disabled:opacity-50"
-      >
-        {savingSettings ? 'Saving...' : 'Save to Firebase'}
-      </button>
-    </form>
-  </div>
-)}
-
-      
 
       {/* Product Add/Edit Modal */}
       <ProductModal
